@@ -8,7 +8,9 @@ const DropdownBox = () => {
     const [selectedPerson, setSelectedPerson] = useState(null);
 
     const handleSelect = (event) => {
-        const selected = data.find(person => `${person.firstname} ${person.lastname}` === event.target.value);
+
+        const personIndex = event.target.value;
+        const selected = data[personIndex];
         setSelectedPerson(selected);
         console.log(selected)
     };
@@ -18,9 +20,9 @@ const DropdownBox = () => {
             <h2 className="info">Information</h2>
             <select className="DropdownBox" onChange={handleSelect}>
                 <option>Välj en person</option>
-                {data.map((info, index) => (
-                    <option key={index}>
-                        {info.firstname} {info.lastname}
+                {data.map((person, index) => (
+                    <option key={index} value={index}>
+                        {person.firstname} {person.lastname}
                     </option>
                 ))}
             </select>
