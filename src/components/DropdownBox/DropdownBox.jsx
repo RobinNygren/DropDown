@@ -1,11 +1,12 @@
 import dropdown from "./dropdown.json";
 import { useState } from 'react'
 import "./DropdownBox.css";
+import InfoBox from "../InfoBox/InfoBox";
 
 
 const DropdownBox = () => {
     const data = dropdown.data;
-    const [selectedPerson, setSelectedPerson] = useState(null);
+    const [selectedPerson, setSelectedPerson] = useState([]);
 
     const handleSelect = (event) => {
 
@@ -26,15 +27,7 @@ const DropdownBox = () => {
                     </option>
                 ))}
             </select>
-            {selectedPerson && (
-                <div className="UserInfo">
-                    <p>Byxfärg: {selectedPerson.pant_color}</p>
-                    <p>Favoritmat: {selectedPerson.favorite_food}</p>
-                    <p>Favoritverktyg: {selectedPerson.favorite_tool}</p>
-                    <p>Husdjur: {selectedPerson.pet}</p>
-                    <p>Hobby: {selectedPerson.hobby}</p>
-                </div>
-            )}
+            {selectedPerson && <InfoBox person = {selectedPerson}/>}
         </>
     );
 }
